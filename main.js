@@ -1,8 +1,8 @@
 /*----- constants -----*/
 const players = { 
-    '1' : 'purple', 
-    '-1' : 'green', 
-    'null' : 'null'
+    '1' : 'goldenrod', 
+    '-1' : 'olivedrab', 
+    'null' : 'white'
 };
 
 const WINNING_COMBOS = [ 
@@ -21,16 +21,18 @@ let board;
 let turn; 
 let winner; 
 
+
 /*----- cached element references -----*/
 const boxes = document.querySelectorAll('td div'); 
 const winMsg = document.querySelector('h2'); 
 
 /*----- event listeners -----*/
 document.querySelector('#board').addEventListener('click', handleMove); 
-document.querySelector('#btnReset').addEventListener('click', init); 
+document.querySelector('button').addEventListener('click', init); 
 
 /*----- functions -----*/
 init(); 
+
 
 function handleMove(event){ 
     // check event listener
@@ -48,27 +50,37 @@ function handleMove(event){
 }; 
 
 // function to text for win 
-function getWin() {
-    // index = 0, then iterates over WINNING_COMBOS array to check for winning combo and returns winning player if found 
-  for (let i = 0; i < WINNING_COMBOS.length; i++) {
-    if (Math.abs(board[WINNING_COMBOS[i][0]] + board[WINNING_COMBOS[i][1]] + board[WINNING_COMBOS[i][2]]) === 3) return board[WINNING_COMBOS[i][0]]; 
-  }
-  // if boxes remain empty, game continues play 
-  if (board.includes(null)) return null;
-  return 'true';
-}
+function getWin() {  
+      let winner = null;
+      // trying my hand at ternary's 
+      // uses forEach to check winning_combos array for winning combinations 
+      WINNING_COMBOS.forEach(function(comboArr, idx) {
+        if (board[comboArr[0]] && board[comboArr[0]] === board[comboArr[1]] && board[comboArr[0]] === board[comboArr[2]]) {
+          winner = board[comboArr[0]];
+        }
+      });
+        if (winner) { 
+          return winner
+        }
+        else if (board.includes(null)) {
+          return null; }
+        else { 
+          return 'tie'
+        }
+  };
+
 
 // renders board changes and message changes for each turn and game outcomes
 function render() {
   board.forEach(function(bx, idx) {
     boxes[idx].style.background = players[bx];
   });
-  if (winner === 'true') {
-    winMsg.innerHTML = 'Sashay away!';
+  if (winner === 'tie') {
+    winMsg.innerHTML = 'It is a tie!';
   } else if (winner) {
     winMsg.innerHTML = `Congrats, you are a winner, baby!`;
   } else {
-    winMsg.innerHTML = `${players[turn]}'s Turn`;
+    winMsg.innerHTML = `Go: ${players[turn]}`;
   }
 }
 
@@ -80,3 +92,5 @@ function init() {
   winner = null;
   render();
 }
+
+
