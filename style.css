@@ -35,7 +35,7 @@ td div {
     pointer-events: none; 
 }
 
-button { 
+#btnReset { 
     padding: 30px; 
     margin: 30px 0 0 0; 
     background-color: navy; 
@@ -43,3 +43,4 @@ button {
     border: 2px dotted gray; 
     font-size: 24px; 
 }
+
