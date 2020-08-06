@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=MuseoModerno:wght@500&display=swap');
+
+* { 
+    box-sizing: border-box;
+}
+
+body { 
+    height: 100vh; 
+    margin: 0; 
+    font-family: 'Lato', sans-serif;
+    color: navy; 
+    font-size: 16pt; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 { 
+    margin: 0 0 0 50; 
+    font-family: 'MuseoModerno', cursive;
+    font-size: 24px; 
+}
+
+td { 
+    height: 150px; 
+    width: 150px;
+    border: 3px dotted olivedrab; 
+}
+
+td div { 
+    margin: auto; 
+    height: 50px; 
+    width: 50px; 
+    border-radius: 50%; 
+    pointer-events: none; 
+}
+
+button { 
+    padding: 30px; 
+    margin: 30px 0 0 0; 
+    background-color: navy; 
+    color: white; 
+    border: 2px dotted gray; 
+    font-size: 24px; 
+}
